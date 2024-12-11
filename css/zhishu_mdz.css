@@ -1,0 +1,709 @@
+@charset "utf-8";
+/* CSS Document */
+
+.jz-ps {
+    position: relative;
+    overflow: hidden;
+    padding-left: 40px;
+    width: 1155px;
+    margin: 20px auto 0;
+    line-height: 22px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+.jz-time {
+    float: left;
+
+}
+
+
+.jz-time::before {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 18px;
+    top: 5px;
+    background: url("../images/sprit.png?v=20240321") -3px -103px / auto auto no-repeat;
+}
+
+.jz-time .time-con {
+    color: #333;
+}
+
+.jz-time .time-con.red {
+    color: #A44E0D;
+}
+
+.jz-ffl {
+    float: right;
+    margin-right: 22px;
+}
+
+.jz-ffl a {
+    color: #A44E0D;
+}
+
+.jz-ffl a::after {
+    display: block;
+    float: right;
+    margin-left: 8px;
+    margin-top: 2px;
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: url(../images/sprit.png?v=20240321) no-repeat -37px -100px;
+
+}
+
+
+.jz-profile {
+    padding: 12px 30px 57px;
+    margin-top: 30px;
+    margin-left: 8px;
+    font-size: 16px;
+    color: #333333;
+    line-height: 62px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 30px 5px rgba(0, 0, 0, 0.05), 0px 8px 10px -5px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.jz-main {
+    width: 1229px;
+    margin: 0 auto;
+}
+
+
+.jz-list {
+    overflow: hidden;
+    display: flex;
+}
+
+.jz-item {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    height: 173px;
+    margin: 20px 10px 30px;
+    color: #ff4646;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 30px 5px rgba(0, 0, 0, 0.05), 0px 8px 10px -5px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.jz-list li:first-child {
+    margin-left: 17px;
+}
+
+
+.jz-item6,
+.jz-item12 {
+    margin-right: 0;
+}
+
+.jz-item .t {
+    position: relative;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    background: linear-gradient(to right, #FFC870, #F39C3C);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.jz-item .t::before {
+    content: "";
+    position: absolute;
+    top: 17px;
+    height: 28px;
+    width: 28px;
+    background: url("../images/sprit.png") 0 -46px no-repeat;
+}
+
+.jz-item .t1::before {
+    left: 74px;
+}
+
+.jz-item .t2::before {
+    background-position: -38px -46px;
+    left: 52px;
+}
+
+.jz-item .t3::before {
+    background-position: -73px -46px;
+    left: 55px;
+}
+
+.jz-item .m {
+    overflow: hidden;
+}
+
+.jz-item .jz-num {
+    float: left;
+    width: 48%;
+    font-size: 0;
+    padding: 24px 16px 20px;
+    height: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.jz-item .jz-num span {
+    font-size: 34px;
+}
+
+.jz-item .jz-num::after {
+    content: "";
+    display: inline-block;
+    margin-left: 20px;
+    width: 13px;
+    height: 100%;
+    background: url("../images/sprit.png?v=20240321") -4px -133px / auto auto no-repeat;
+}
+
+.jz-item .jz-bfb {
+    overflow: hidden;
+    padding-bottom: 20px;
+    margin-top: 21px;
+    float: right;
+    width: 42%;
+}
+
+.jz-item .jz-bfb .jz-zd {
+    font-size: 14px;
+    margin-top: 7px;
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+}
+
+.jz-item .jz-zd-b {
+    margin-right: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #999;
+}
+
+.jz-item .jz-item-time {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 0 16px;
+    border-top: 1px dashed #e4e4e4;
+    line-height: 36px;
+    font-size: 14px;
+    color: #c2c2c2;
+    text-align: center;
+}
+
+.jz-item.down {
+    color: #01A31C;
+}
+
+.jz-item.down .jz-num::after {
+    background: url("../images/sprit.png?v=20240321") -38px -133px / auto auto no-repeat;
+}
+
+.jz-item.flat {
+    color: #333;
+}
+
+.jz-item.flat .jz-num::after {
+    background: url("//a.mysteelcdn.com/common/mysteel/dataIndex/shashi/images/sprit.png") -100px -114px / auto auto no-repeat;
+}
+
+.jz-chart {
+    margin: 26px auto 30px;
+    width: 1192px;
+    height: 571px;
+    box-shadow: 0px 6px 30px 5px rgba(0, 0, 0, 0.05), 0px 8px 10px -5px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.jz-chart-box {
+    height: 456px;
+    padding: 0 0 30px 30px;
+}
+
+.zst-more {
+    position: absolute;
+    top: 9px;
+    right: 30px;
+    height: 26px;
+    width: 26px;
+    background: url("//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/images/sprit.png") 0 0 / auto auto no-repeat;
+    cursor: pointer;
+}
+
+.zst-more:hover{
+    background: url("//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/images/sprit.png") -38px 0 / auto auto no-repeat;
+}
+
+.jz-dt {
+    overflow: hidden;
+    position: relative;
+    box-sizing: border-box;
+    height: 159px;
+    margin-top: 30px;
+    padding: 20px;
+    box-shadow: 0px 6px 30px 5px rgba(0, 0, 0, 0.05), 0px 8px 10px -5px rgba(0, 0, 0, 0.08);
+    border-radius: 5px;
+    color: #333;
+    line-height: 30px;
+}
+
+.jz-dt-con {
+    width: 902px;
+    float: right;
+}
+
+.jz-dt .t {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.jz-dt .content {
+    padding-top: 10px;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.jz-dt .detail {
+    position: absolute;
+    color: #0149AA;
+    font-size: 14px;
+    right: 38px;
+    top: 120px;
+    line-height: 14px;
+}
+
+.jz-dt .detail:hover {
+    color: #A44E0D;
+}
+
+.focus-box {
+    width: 228px;
+    height: 118px;
+    overflow: hidden;
+    float: left;
+    position: relative;
+    z-index: 1;
+}
+
+.focus-box .focus-pic {
+    height: 118px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.focus-box .focus-pic li {
+    height: 118px;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+.focus-box .focus-pic li img {
+    display: block;
+    width: 228px;
+    height: 118px;
+}
+
+.wrap {
+    overflow: hidden;
+ 
+}
+.index-bt-box{
+    display: flex;
+}
+
+.jz-box {
+    flex: 1;
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 30px 5px rgba(0, 0, 0, 0.05), 0px 8px 10px -5px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.m-l30 {
+    margin-left: 14px;
+}
+
+.btn-box {
+    padding-left: 12px;
+    border-bottom: 1px solid #F0F0F0;
+    overflow: hidden;
+}
+
+.jz-kx-box {
+    margin-left: 8px;
+}
+
+.btn-box a {
+    padding: 10px 0 12px;
+    font-size: 16px;
+    display: block;
+    float: left;
+    font-weight: bold;
+    color: #333333;
+    line-height: 19px;
+    cursor: pointer;
+}
+
+.btn-box a::before {
+    display: block;
+    margin-right: 12px;
+    float: left;
+    content: "";
+    width: 6px;
+    height: 20px;
+    background: url(../images/sprit.png) no-repeat -92px -96px;
+}
+
+.btn-box a:hover, .btn-box a.btnon {
+    text-decoration: none;
+}
+
+.btn-yjj {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    color: #A44E0D;
+}
+
+.btn-yjj:hover {
+    color: #C68140;
+    text-decoration: none;
+}
+
+.news-flash {
+    overflow-y: auto;
+    width: 93%;
+    height: 188px;
+    padding: 2px 20px 16px;
+}
+
+.news-flash dl {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.news-flash dl dt {
+    position: relative;
+    width: 55px;
+    color: #666666;
+    padding-top: 20px;
+}
+
+.news-flash dl dt::after {
+    display: block;
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 25px;
+    width: 8px;
+    height: 8px;
+    background: #f59221;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+
+.news-flash dl dd {
+    position: relative;
+    flex: 1;
+    padding: 20px 0 0 12px;
+}
+
+.news-flash dl dd::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 16px;
+    width: 1px;
+    height: 100%;
+    border-left: 1px dashed #d5d5d5;
+}
+
+.news-flash dl dd p {
+    position: relative;
+    display: block;
+    /*max-height: 44px;*/
+    overflow: hidden;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.news-flash .first-dl dt {
+    background-position: right 5px;
+    padding-top: 0;
+}
+
+.news-flash .first-dl dd {
+    padding-top: 0;
+}
+
+.news-flash strong {
+    position: relative;
+    display: block;
+    padding-top: 14px;
+    background: #fff;
+}
+
+.jz-fx {
+    height: 302px;
+}
+
+.jz-fx .news-list {
+    margin-top: 10px;
+    height: 172px;
+}
+
+.jz-fx .more {
+    margin: 2px 0 5px 0;
+}
+
+
+
+.menu-btn {
+    overflow: hidden;
+    text-align: center;
+    margin: 10px 0 0 0;
+}
+
+.menu-btn a {
+    display: block;
+    float: left;
+    padding: 6px 15px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.menu-btn a:first-child {
+    border-radius: 3px 0px 0px 3px;
+}
+
+.menu-btn a:last-child {
+    border-radius: 0px 3px 3px 0px;
+}
+
+
+.menu-btn a.no-border-left {
+    border-left: none;
+}
+
+.menu-btn a:hover, .menu-btn a.btnon {
+    background: rgba(245,146,33,0.1);
+    border: 1px solid #F59221;
+    color:#F59221;
+    text-decoration: none;
+}
+
+.news-item {
+    display: none;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+.news-list {
+    margin-top: 20px;
+    height: 193px;
+}
+
+.news-list li {
+    line-height: 24px;
+    padding-left: 14px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    list-style: none;
+}
+
+.news-list li::before {
+    width: 4px;
+    height: 4px;
+    content: "";
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -4px;
+    z-index: 1;
+    background: #D6D6D6;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.news-list li span {
+    float: right;
+    color: #999999;
+}
+
+.news-list li span.red {
+    color: #A44E0D;
+}
+
+.news-list li a {
+    width: 85%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.news-list li.past a {
+    width: 75%;
+}
+
+.more {
+    text-align: right;
+    margin: 12px 0 20px 0;
+}
+
+.more a {
+    font-weight: 400;
+    font-size: 14px;
+    color: #F59221;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.more a:hover {
+    color: #f56b21;
+    text-decoration: none;
+}
+
+.mb-12 {
+    margin-bottom: 12px;
+}
+
+.sub-item {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.more-div {
+    text-align: right;
+    margin: 23px 20px 8px 0;
+}
+
+/*简介*/
+
+#about-box {
+    background: linear-gradient(to bottom, #FFF5E8, #ffffff)
+}
+
+#about-box .jz-title {
+    margin-top: 30px;
+}
+
+.btn-back {
+    float: left;
+    margin-left: 42px;
+    font-size: 14px;
+    color: #A44E0D;
+    font-weight: normal;
+}
+
+.btn-back::after {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    margin-top: 8px;
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: url(../images/sprit.png?v=20240321) no-repeat -37px -100px;
+}
+
+#about-box .wrap {
+    width: 1229px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.about-con {
+    margin: 30px;
+    padding: 28px 30px 35px;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 30px 5px rgba(0, 0, 0, 0.05), 0px 8px 10px -5px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.about-con p {
+    font-size: 14px;
+    color: #333333;
+    line-height: 28px;
+    text-indent: 2em;
+}
+
+.about-con p a {
+    font-weight: bold;
+}
+
+.about-con p.last-con {
+    margin-top: 20px;
+}
+
+#about-box .jz-title::after {
+    margin-left: 26.8px
+}
+
+.index-data-item {
+    width: 1152px;
+    padding: 20px;
+    margin: 26px auto 30px;
+    background: #fff;
+    box-shadow: 0 6px 30px 5px rgba(0, 0, 0, .05), 0 8px 10px -5px rgba(0, 0, 0, .08);
+    border-radius: 8px;
+}
+
+.index-data-item .table-index {
+    width: 100%;
+}
+
+.index-data-item .table-index thead {
+    height: 44px;
+    background: #D0A086;
+    border-radius: 2px 2px 0 0;
+    color: #fff;
+    font-weight: 600;
+}
+
+.index-data-item .table-index tbody tr {
+    height: 44px;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.index-data-item .table-index tbody tr:nth-child(even) {
+    background: #F7F7F7;
+
+}
+
+.index-data-item .table-index th,
+.index-data-item .table-index td {
+    padding: 0 8px;
+    text-align: left;
+}

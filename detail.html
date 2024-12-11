@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    #parse("/WEB-INF/templates/public_head_meta_mysteel.html")
+    <title>山东省米袋子价格指数</title>
+    <meta name="description" content="方法公开透明、样本覆盖全面、量化模型科学、价格及时准确"/>
+    #parse("/WEB-INF/templates/public_newcommon_js.html")
+    <link rel="shortcut icon" type="image/x-icon" href="//www.mysteel.com/favicon.ico" />
+    <!-- 页面css文件 -->
+    <link rel="stylesheet" href="//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/css/common.css">
+    <link rel="stylesheet" href="//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/css/zhishu_mdz_detail.css">
+    <link id="layuicss-laydate" rel="stylesheet"
+        href="https://a.mysteelcdn.com/common/rate_system/layui/css/modules/laydate/default/laydate.css?v=5.0.9"
+        media="all" />
+</head>
+<body class="jz">
+    <div class="jz-top"></div>
+    <div class="jz-main">
+        <div class="jz-nav">当前位置：<a target="_blank" href="https://www.mysteel.com/mdz/">首页</a>&nbsp;>&nbsp;<span>价格指数</span></div>
+        <div class="jz-chart-shell">
+            <div class="jz-chart-shell-l">
+                <div class="j-item jz-item-wrap cur"><div class="jz-item jz-item1">山东省米袋子价格指数</div></div>    
+            </div>
+            <div class="jz-chart-shell-r">
+                <div class="jz-chart">
+                    <div class="jz-title">
+                        <span id="pinzhong-title">山东省米袋子价格指数</span>
+                        <span class="title2">历史曲线</span>
+                    </div>
+                    <div class="t">
+                        <div class="input-line">
+                            <div class="input-box">
+                                <input class="startTime j-start" type="text">
+                            </div>
+                                <label>至</label>
+                            <div class="input-box">
+                                <input class="endTime j-end" type="text">
+                            </div>
+                            <button class="j-submit">查 询</button>
+                            <ul class="month-list">
+                                <li class="j-btn" data-val='30'><button>1月</button></li>
+                                <li class="j-btn" data-val='90'><button>3月</button></li>
+                                <li class="j-btn" data-val='365'><button>1年</button></li>
+                            </ul>
+                        </div>
+                        <div class="public-line"></div>
+                    </div>
+                    <div class="jz-chart-box" id="chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="jz-table">
+            <div class="jz-table-head">
+                <table class="j-thead">
+                    <tr>
+                        <th class="t1 name">指标名称</th>
+                        <th class="t2">指标值</th>
+                        <th class="t3">涨跌值</th>
+                        <th class="t4">涨跌幅</th>
+                        <th class="t5">发布时间</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="jz-table-body">
+                <table class="j-tbody"></table>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="foot">
+        #parse("/WEB-INF/templates/public_foot.html")      
+    </div>
+    #parse("/WEB-INF/templates/publice_seo_bottom_hotkeyword.html")
+    <!-- 页面js -->
+    <script src="//a.mysteelcdn.com/libs/jquery.min.js" charset="gbk"></script>
+    <script src="//a.mysteelcdn.com/libs/echarts/echarts.min.js" charset="UTF-8"></script>
+    <script src="//a.mysteelcdn.com/libs/layui/layui.js" charset="UTF-8"></script>
+    <script src="//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/js/zhishu_mdz_detail.js" charset="UTF-8"></script>
+</body>
+</html>

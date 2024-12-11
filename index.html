@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    #parse("/WEB-INF/templates/public_head_meta_mysteel.html")
+    <title>山东省米袋子价格指数</title>
+    <meta name="description" content="方法公开透明、样本覆盖全面、量化模型科学、价格及时准确" />
+    #parse("/WEB-INF/templates/public_newcommon_js.html")
+    <link rel="shortcut icon" type="image/x-icon" href="//www.mysteel.com/favicon.ico" />
+    <link id="layuicss-laydate" rel="stylesheet"
+        href="https://a.mysteelcdn.com/common/rate_system/layui/css/modules/laydate/default/laydate.css?v=5.0.9"
+        media="all" />
+    <!-- 页面css文件 -->
+    <link rel="stylesheet" href="//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/css/common.css">
+    <link rel="stylesheet" href="//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/css/zhishu_mdz.css">
+</head>
+<body class="jz">
+    <div class="jz-top">
+        <img src="//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/images/banner.jpg" alt="">
+    </div>
+    <div class="jz-main">
+        <div class="jz-ps">
+            <div class="jz-time">发布时间：<span class="time-con"></span></div>
+            <div class="jz-ffl">
+                <a href="https://index.mysteel.com/topic/sdmdz/about.html" target="_blank">山东省米袋子价格指数解读</a>
+            </div>
+        </div>
+        <ul class="jz-list">
+            <li class="jz-item" id="mdzjgzs">
+                <div class="t t1">山东省米袋子价格指数</div>
+            </li>
+            <li class="jz-item" id="mdzgjzs">
+                <div class="t t2">山东省米袋子供给价格指数</div>
+            </li>
+            <li class="jz-item" id="mdzxfzs">
+                <div class="t t3">山东省米袋子消费价格指数</div>
+            </li>             
+        </ul>
+        <div class="jz-title">
+            山东省米袋子&nbsp;<span class="black">价格指数趋势</span>
+            <a target="_blank" href="https://index.mysteel.com/topic/sdmdz/detail1.html" class="zst-more"></a>
+        </div>
+        <div class="jz-chart" id="chart-box1">
+            <div class="t">
+                <div class="input-line">
+                    <div class="input-box">
+                        <input class="startTime1 j-start" type="text">
+                    </div>
+                    <label>至</label>
+                    <div class="input-box">
+                        <input class="endTime1 j-end" type="text">
+                    </div>
+                    <button class="j-submit">查 询</button>
+                    <ul class="month-list">
+                        <li class="j-btn" data-val='30'><button>1月</button></li>
+                        <li class="j-btn" data-val='90'><button>3月</button></li>
+                        <li class="j-btn" data-val='365'><button>1年</button></li>
+                    </ul>
+                </div>
+                <div class="public-line"></div>
+            </div>
+            <div class="chart-item"> 
+            <div class="jz-chart-box" id="chart1"></div>
+            </div>
+        </div>
+
+        <div class="jz-title">
+            山东省米袋子&nbsp;<span class="black">供给价格指数趋势</span>
+            <a target="_blank" href="https://index.mysteel.com/topic/sdmdz/detail2.html" class="zst-more"></a>
+        </div>
+        <div class="jz-chart" id="chart-box2">
+            <div class="t">
+                <div class="input-line">
+                    <div class="input-box">
+                        <input class="startTime2 j-start" type="text">
+                    </div>
+                    <label>至</label>
+                    <div class="input-box">
+                        <input class="endTime2 j-end" type="text">
+                    </div>
+                    <button class="j-submit">查 询</button>
+                    <ul class="month-list">
+                        <li class="j-btn" data-val='30'><button>1月</button></li>
+                        <li class="j-btn" data-val='90'><button>3月</button></li>
+                        <li class="j-btn" data-val='365'><button>1年</button></li>
+                    </ul>
+                </div>
+                <div class="public-line"></div>
+            </div>
+            <div class="chart-item"> 
+                <div class="jz-chart-box" id="chart2"></div>
+            </div>
+     
+        </div>
+
+        <div class="jz-title">
+            山东省米袋子&nbsp;<span class="black">消费价格指数趋势</span>
+            <a target="_blank" href="https://index.mysteel.com/topic/sdmdz/detail3.html" class="zst-more"></a>
+        </div>
+        <div class="jz-chart" id="chart-box3">
+            <div class="t">
+                <div class="input-line">
+                    <div class="input-box">
+                        <input class="startTime3 j-start" type="text">
+                    </div>
+                    <label>至</label>
+                    <div class="input-box">
+                        <input class="endTime3 j-end" type="text">
+                    </div>
+                    <button class="j-submit">查 询</button>
+                    <ul class="month-list">
+                        <li class="j-btn" data-val='30'><button>1月</button></li>
+                        <li class="j-btn" data-val='90'><button>3月</button></li>
+                        <li class="j-btn" data-val='365'><button>1年</button></li>
+                    </ul>
+                </div>
+                <div class="public-line"></div>
+            </div>
+            <div class="chart-item"> 
+            <div class="jz-chart-box" id="chart3"></div>
+            </div>
+        </div>
+
+        <div class="jz-title pt-none">
+            资讯分析           
+        </div>
+        <div class="wrap index-bt-box">       
+            <div class="jz-box f-l mr-20 ml-20">
+                <h2 class="btn-box">
+                    <a href="https://www.mysteel.com/fastcomment/#/?breedTagId=4372" class="other-more btnon" target="_blank" data-text="快讯-标题">快讯</a>                    
+                </h2>
+                <div class="news-flash" id="kuaixunwrap">                
+                </div>
+                <div class="more-div more" id="kuaixunmore">
+                    <a class="other-more" rel="nofollow" href="https://www.mysteel.com/fastcomment/#/?breedTagId=4372" target="_blank" data-text="快讯-更多按钮">更多&gt;</a>
+                </div>
+            </div>
+            <div class="jz-box f-r mr-20">
+                <h2 class="btn-box">
+                    <a class="other-more btnon" href="https://li.mysteel.com/article/pa4125a070401,070403,070402,071101aaaaa1.html" target="_blank" data-text="指数解读-标题">指数解读</a>
+                </h2>
+                <div class="news-item show">
+                    <ul class="news-list">                             
+                        #set($articles = "")
+                        #set($articles = $!{articleEsTool.list("4125","070401,070403,070402,071101","","","","","",true,0,7)})
+                        #foreach($article in $articles)
+                        <li #if($article.currentYear!="0" ) class="past" #end>
+                            <span #if($article.currentDay=="0") class="red" #end>[$!{article.time6}]</span>
+                            <a class="text" href="$!{article.url}" title="$!{article.title}" target="_blank">$!{article.title}</a>
+                        </li>
+                        #end 
+                    </ul>
+                    <div class="more mb-12">
+                        <a  class="other-more" href="https://li.mysteel.com/article/pa4125a070401,070403,070402,071101aaaaa1.html" rel="nofollow" target="_blank" data-text="指数解读-更多按钮">更多&gt;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <div class="foot">
+        #parse("/WEB-INF/templates/public_foot.html")      
+    </div>
+    #parse("/WEB-INF/templates/publice_seo_bottom_hotkeyword.html")
+    <!-- 页面js -->
+    <script src="//a.mysteelcdn.com/libs/jquery.min.js" charset="gbk"></script>
+    <script src="//a.mysteelcdn.com/common/3.0/newcommon.js?v=202006051010" charset="gbk"></script>
+    <script src="//a.mysteelcdn.com/common/mysteel/js/mysteel_common_fn.js?v=20241107" charset="gbk"></script> 
+    <script src="//a.mysteelcdn.com/libs/echarts/echarts.min.js" charset="UTF-8"></script>
+    <script src="//a.mysteelcdn.com/libs/layui/layui.js" charset="UTF-8"></script>    
+    <script src="//a.mysteelcdn.com/news/js/jquery.SuperSlide.js" charset="gbk"></script>
+    <script src="//a.mysteelcdn.com/common/mysteel/dataIndex/midaizi/js/zhishu_mdz.js" charset="UTF-8"></script>
+</body>
+</html>

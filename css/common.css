@@ -1,0 +1,360 @@
+@charset "UTF-8";
+/* 公共样式 */
+body,
+button,
+dd,
+dl,
+dt,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+input,
+legend,
+li,
+ol,
+p,
+pre,
+textarea,
+select,
+option,
+th,
+ul {
+  margin: 0;
+  padding: 0;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font: 14px/22px;
+  outline: none;
+}
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font: 14px/22px;
+  font-family: "HarmonyOS Sans SC", "Source Han Sans CN", "PingFang SC", "Microsoft YaHei", Arial, Helvetica, sans-serif;
+  color: #333;
+    background: linear-gradient(to bottom, #FFF5E8, #ffffff)
+}
+ul,
+li {
+  list-style: none;
+}
+em,
+i {
+  font-style: normal;
+}
+a {
+  color: #333;
+  text-decoration: none;
+  outline: none;
+}
+a:hover {
+  color: #F59221;;
+  text-decoration: underline;
+}
+legend {
+  color: #333;
+}
+fieldset,
+img {
+  border: 0;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+img {
+  -ms-interpolation-mode: bicubic;
+}
+textarea {
+  resize: vertical;
+}
+button,
+label {
+  cursor: pointer;
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: "\20";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.clear {
+  clear: both;
+  height: 0;
+  line-height: 0;
+  font-size: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+.red,
+a.red,
+a.red:hover {
+  color: #db2015;
+}
+.green,
+a.green,
+a.green:hover {
+  color: #009a0e;
+}
+.black,
+a.black,
+a.black:hover {
+  color: #333;
+}
+.blue,
+a.blue,
+a.blue:hover {
+  color: #043885;
+}
+.orange,
+a.orange,
+a.orange:hover {
+  color: #f76600;
+}
+.f-l {
+  float: left;
+}
+.f-r {
+  float: right;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.no-border {
+  border: none !important;
+}
+.mr-7 {
+  margin-right: 7px;
+}
+.mr-20 {
+  margin-right: 20px;
+}
+.mr-25 {
+  margin-right: 25px;
+}
+.mr-30 {
+  margin-right: 30px;
+}
+
+.ml-10{
+  margin-left: 10px;
+}
+
+.ml-20{
+  margin-left:20px;
+}
+.mr-10{
+  margin-right: 10px;
+}
+
+.pt-none{
+  padding-top: 0 !important;
+}
+@media only screen and (max-width: 1024px) {
+  html {
+    overflow-x: scroll !important;
+  }
+}
+@media only screen and (max-width: 1152px) {
+  html {
+    overflow-x: scroll !important;
+  }
+}
+body {
+  margin: 0;
+  min-width: 1190px;
+}
+
+/* layui */
+ @font-face {
+    font-family: layui-icon;
+    src: url(//a.mysteelcdn.com/common/rate_system/layui/font/iconfont.eot?v=256);
+    src: url(//a.mysteelcdn.com/common/rate_system/layui/font/font/iconfont.eot?v=256#iefix) format('embedded-opentype'),url(//a.mysteelcdn.com/common/rate_system/layui/font/iconfont.woff2?v=256) format('woff2'),url(//a.mysteelcdn.com/common/rate_system/layui/font/iconfont.woff?v=256) format('woff'),url(//a.mysteelcdn.com/common/rate_system/layui/font/iconfont.ttf?v=256) format('truetype'),url(//a.mysteelcdn.com/common/rate_system/layui/font/iconfont.svg?v=256#layui-icon) format('svg')
+}
+.layui-icon {
+    font-family: layui-icon!important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.public-one-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.public-line {
+  /* width: 100%; */
+  /* height: 1px;
+        background-image: linear-gradient(to right, #D9D9D9 0%, #D9D9D9 50%, transparent 50%);
+        background-size: 10px 1px;
+        background-repeat: repeat-x; */
+  border-bottom: 1px dashed #d9d9d9;
+}
+
+.jz button {
+  width: 59px;
+  height: 32px;
+  margin-left: 13px;
+  background: #F59221;
+  border-radius: 5px;
+  line-height: 32px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.jz-top {
+  width: 100%;
+  min-width: 1229px;
+  margin: 0 auto;
+}
+.jz-top img{
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.jz-title {
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+  color: #A44E0D;
+  text-align: center;
+  line-height: 32px;
+}
+.jz-title::after{
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  margin-left:-18.5px;
+  content: "";
+  width: 37px;
+  height: 4px;
+  background: #A44E0D;
+}
+
+
+.jz-title .more {
+  position: absolute;
+  top: 39px;
+  right: 0;
+  height: 18px;
+  width: 18px;
+  background: url("../images/sprit.png")
+    -123px -168px / auto auto no-repeat;
+  cursor: pointer;
+}
+
+.jz-title .more:hover{
+  background: url("../images/sprit.png")
+  -164px -168px / auto auto no-repeat;
+}
+
+
+.jz-title .title2 {
+  color: #333;
+}
+
+
+.jz-chart .t {
+  position: relative;
+  margin: 0 20px;
+  height: 85px;
+}
+.jz-chart .input-box {
+  position: relative;
+  display: inline-block;
+}
+.jz-chart .input-box::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 11px;
+  width: 16px;
+  height: 16px;
+  background: url("//a.mysteelcdn.com/common/mysteel/dataIndex/shashi/images/sprit.png") -150px -114px /
+    auto auto no-repeat;
+}
+
+.jz-chart input {
+  box-sizing: border-box;
+  padding: 0 25px 0 13px;
+  height: 32px;
+  width: 125px;
+  outline: none;
+  line-height: 32px;
+  border-radius: 3px;
+  border: 1px solid #DDDDDD;
+  font-size: 14px;
+  color: #666;
+}
+.jz-chart .input-line {
+  padding: 20px 0;
+}
+
+.jz-chart .input-line label {
+  padding: 0 10px;
+  color: #333333;
+  font-size: 14px;
+}
+.jz-chart .month-list {
+  position: absolute;
+  height: 36px;
+  top: 26px;
+  right: 0;
+}
+.jz-chart .month-list li {
+  float: left;
+  padding-left: 3px;
+}
+.jz-chart .month-list li button {
+  background: #EEEEEE;
+  border-radius: 3px;
+  color: #999999;
+  padding: 0 8px;
+  width: auto;
+}
+.jz-chart .month-list li.cur button {
+  background-color: #F59221;
+  color: #fff;
+}
+
+/* 底部公共样式 */
+.foot {
+  min-width: 1190px;
+  border-top: 1px solid #d1d1d1;
+  background: rgb(242,242,242);
+}

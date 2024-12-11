@@ -1,6 +1,53 @@
 // JavaScript Document$(function () {
 
 //头部价格指数
+//通过mdz_data数据渲染页面
+function renderPage(data){
+    var dom = '';
+    for(var i=1;i<=data.length;i++){
+        var divDom = "<div class='jz-title'>山东省米袋子&nbsp;<span class='black'>"
+                  +data[i-1].title
+                  +"</span>"
+                  +"<a target='_blank' href='./detail.html?type="
+                  + i
+                  +"' class='zst-more'></a></div>"
+                  + "<div class='jz-chart' id='chart-box"
+                  +i
+                  +"'>"
+                  + "<div class='t'>"
+                  + "<div class='input-line'>"
+                  + "<div class='input-box'>"
+                  + "<input class='startTime"
+                  +i
+                  +" j-start' type='text'>"
+                  + "</div>"
+                  + "<label>至</label>"
+                  + "<div class='input-box'>"
+                  + "<input class='endTime"
+                  +i
+                  +" j-end' type='text'>"
+                  + "</div>"
+                  + "<button class='j-submit'>查 询</button>"
+                  + "<ul class='month-list'>"
+                  + "<li class='j-btn' data-val='30'><button>1月</button></li>"
+                  + "<li class='j-btn' data-val='90'><button>3月</button></li>"
+                  + "<li class='j-btn' data-val='365'><button>1年</button></li>"
+                  + "</ul>"
+                  + "</div>"
+                  +"<div class='public-line'></div>"
+                  +"</div>"
+                  +"<div class='chart-item'>" 
+                  +"<div class='jz-chart-box' id='chart"
+                  +i
+                  +"'></div>"
+                  +"</div>"
+                  +"</div>"
+        dom += divDom;
+                  
+    }
+    $('.jz-main .jz-list').after(dom);
+}
+renderPage(indexData);
 // 请求指标数据
 function getData(zhibiao, zhibiaoName, JDom) {
     jQuery.ajax({

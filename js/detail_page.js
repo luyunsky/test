@@ -40,16 +40,49 @@ $(function () {
         },
       });
     });
+
+    // 获取当前url参数
+    function queryURLParams(paramsName){
+        var reg = new RegExp("(^|&)" + paramsName + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!== null){
+            return unescape(r[2])
+        } else{
+            return null
+        }
+    }
+    var curPageType = queryURLParams('type');
+    var curData = indexData.filter(function (item) {
+      return item.type == curPageType;
+    })[0];
+
     //  当前指数名称
-    var curZSName = "山东省米袋子价格指数";
+    // var curZSName = "山东省米袋子价格指数";
+    var curZSName = curData.data[0].title;
     // 当前指数指标代码
-    var curZSCode = "ID01954382";
-    var zhibiaoCodeList = [
-      "ID01954382"
-    ];
-    var zhibiaoYSCodeList = {
-      "ID01954382": ["ID01954382", "DE0017188898", "DE0017188899"]
-    };
+    // var curZSCode = "ID01954382";
+    // var zhibiaoCodeList = [
+    //   "ID01954382"
+    // ];
+    // var zhibiaoYSCodeList = {
+    //   "ID01954382": ["ID01954382", "DE0017188898", "DE0017188899"]
+    // };
+    var curZSCode = curData.curZSCode;
+    var zhibiaoCodeList = curData.zhibiaoCodeList;
+    var zhibiaoYSCodeList = curData.zhibiaoYSCodeList;
+
+    // 侧边栏tab
+    var tabList = curData.data;
+    var tabListDom = '';
+    for(var i=1;i<=tabList.length;i++){
+      var curClass = ( i == 1) ? 'cur' : '';
+      var tabStr = "<div class='j-item jz-item-wrap " + curClass + "'>" 
+                   +"<div class='jz-item jz-item" + i + "'>"
+                   +tabList[i - 1].title
+                   +"</div></div>";
+      tabListDom += tabStr;
+    }
+    $('.jz-chart-shell-l').append(tabListDom);
   
     function getPassYearFormatDate(day) {
       var date = new Date();

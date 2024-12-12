@@ -1,53 +1,6 @@
 // JavaScript Document$(function () {
 
 //头部价格指数
-//通过mdz_data数据渲染页面
-function renderPage(data){
-    var dom = '';
-    for(var i=1;i<=data.length;i++){
-        var divDom = "<div class='jz-title'>山东省米袋子&nbsp;<span class='black'>"
-                  +data[i-1].title
-                  +"</span>"
-                  +"<a target='_blank' href='./detail.html?type="
-                  + i
-                  +"' class='zst-more'></a></div>"
-                  + "<div class='jz-chart' id='chart-box"
-                  +i
-                  +"'>"
-                  + "<div class='t'>"
-                  + "<div class='input-line'>"
-                  + "<div class='input-box'>"
-                  + "<input class='startTime"
-                  +i
-                  +" j-start' type='text'>"
-                  + "</div>"
-                  + "<label>至</label>"
-                  + "<div class='input-box'>"
-                  + "<input class='endTime"
-                  +i
-                  +" j-end' type='text'>"
-                  + "</div>"
-                  + "<button class='j-submit'>查 询</button>"
-                  + "<ul class='month-list'>"
-                  + "<li class='j-btn' data-val='30'><button>1月</button></li>"
-                  + "<li class='j-btn' data-val='90'><button>3月</button></li>"
-                  + "<li class='j-btn' data-val='365'><button>1年</button></li>"
-                  + "</ul>"
-                  + "</div>"
-                  +"<div class='public-line'></div>"
-                  +"</div>"
-                  +"<div class='chart-item'>" 
-                  +"<div class='jz-chart-box' id='chart"
-                  +i
-                  +"'></div>"
-                  +"</div>"
-                  +"</div>"
-        dom += divDom;
-                  
-    }
-    $('.jz-main .jz-list').after(dom);
-}
-renderPage(indexData);
 // 请求指标数据
 function getData(zhibiao, zhibiaoName, JDom) {
     jQuery.ajax({
@@ -152,136 +105,109 @@ getData("ID01954379,DE0017188896,DE0017188889", "米袋子：基期=2024年第�
 
 
 
-layui.use("laydate", function () {
-    var past3year = new Date().getTime() - 60 * 60 * 24 * 365 * 3 * 1000;
-    var laydate = layui.laydate;
+//通过mdz_data数据渲染页面
+function renderPage(data) {
+    var dom = '';
+    for (var i = 1; i <= data.length; i++) {
+        var divDom = "<div class='jz-title'>山东省米袋子&nbsp;<span class='black'>" +
+            data[i - 1].title +
+            "</span>" +
+            "<a target='_blank' href='https://index.mysteel.com/topic/sdmdz/detail.html?type=" +
+            i +
+            "' class='zst-more'></a></div>" +
+            "<div class='jz-chart' id='chart-box" +
+            i +
+            "'>" +
+            "<div class='t'>" +
+            "<div class='input-line'>" +
+            "<div class='input-box'>" +
+            "<input class='startTime" +
+            i +
+            " j-start' type='text'>" +
+            "</div>" +
+            "<label>至</label>" +
+            "<div class='input-box'>" +
+            "<input class='endTime" +
+            i +
+            " j-end' type='text'>" +
+            "</div>" +
+            "<button class='j-submit'>查 询</button>" +
+            "<ul class='month-list'>" +
+            "<li class='j-btn' data-val='30'><button>1月</button></li>" +
+            "<li class='j-btn' data-val='90'><button>3月</button></li>" +
+            "<li class='j-btn' data-val='365'><button>1年</button></li>" +
+            "</ul>" +
+            "</div>" +
+            "<div class='public-line'></div>" +
+            "</div>" +
+            "<div class='chart-item'>" +
+            "<div class='jz-chart-box' id='chart" +
+            i +
+            "'></div>" +
+            "</div>" +
+            "</div>"
+        dom += divDom;
 
-    // #chart-box1 的时间选择器
-    var startDate1 = laydate.render({
-        elem: ".startTime1",
-        trigger: "click",
-        theme: "#F59221",
-        min: past3year,
-        done: function (value, date) {
+    }
+    $('.jz-main .jz-list').after(dom);
+}
+renderPage(indexData);
 
 
-            if (value !== "") {
-                endDate1.config.min.year = date.year;
-                endDate1.config.min.month = date.month - 1;
-                endDate1.config.min.date = date.date;
-                if (Date.parse(value) > Date.parse($(".endTime1").val())) {
-                    $(".endTime1").val("");
+
+// 初始化日期选择器
+function initDateSelectors() {
+    for (var i = 0; i < indexData.length; i++) {
+        var elem = "#chart-box" + (i + 1); // 确保 elem 包含正确的索引
+        initLayDate(elem, i + 1); // 根据indexData的长度调用initLayDate
+    }
+}
+//日期选择
+function initLayDate(elem, index) {
+    layui.use("laydate", function () {
+        var past3year = new Date().getTime() - 60 * 60 * 24 * 365 * 3 * 1000;
+        var laydate = layui.laydate;
+
+        // #chart-box 的时间选择器
+        var startDateInstance = laydate.render({
+            elem: elem + " .startTime" + index,
+            trigger: "click",
+            theme: "#F59221",
+            min: past3year,
+            done: function (value, date) {
+                if (value !== "") {
+                    startDateInstance.config.min.year = date.year;
+                    startDateInstance.config.min.month = date.month - 1;
+                    startDateInstance.config.min.date = date.date;
+                    if (Date.parse(value) > Date.parse($(elem + ".endTime" + index).val())) {
+                        $(elem + ".endTime" + index).val("");
+                    }
+                } else {
+                    startDateInstance.config.min.year = "";
+                    startDateInstance.config.min.month = "";
+                    startDateInstance.config.min.date = "";
                 }
-            } else {
-                endDate1.config.min.year = "";
-                endDate1.config.min.month = "";
-                endDate1.config.min.date = "";
             }
-        },
-    });
-    var endDate1 = laydate.render({
-        elem: ".endTime1",
-        trigger: "click",
-        theme: "#F59221",
-        min: past3year,
-        done: function (value, date) {
-            if (value !== "") {
-                if (Date.parse(value) < Date.parse($(".startTime1").val())) {
-                    $(".startTime1").val("");
+        });
+        var endDateInstance = laydate.render({
+            elem: elem + " .endTime" + index,
+            trigger: "click",
+            theme: "#F59221",
+            min: past3year,
+            done: function (value, date) {
+                if (value !== "") {
+                    if (Date.parse(value) < Date.parse($(elem + ".startTime" + index).val())) {
+                        $(elem + ".startTime" + index).val("");
+                    }
+                } else {
+                    endDateInstance.config.min.year = "";
+                    endDateInstance.config.min.month = "";
+                    endDateInstance.config.min.date = "";
                 }
-            } else {
-                startDate1.config.min.year = "";
-                startDate1.config.min.month = "";
-                startDate1.config.min.date = "";
-            }
-        },
+            },
+        });
     });
-
-    // #chart-box2 的时间选择器
-    var startDate2 = laydate.render({
-        elem: ".startTime2", // 修改为对应的选择器
-        trigger: "click",
-        theme: "#F59221",
-        min: past3year,
-        done: function (value, date) {
-            if (value !== "") {
-                endDate2.config.min.year = date.year;
-                endDate2.config.min.month = date.month - 1;
-                endDate2.config.min.date = date.date;
-                if (Date.parse(value) > Date.parse($(".endTime2").val())) {
-                    $(".endTime2").val("");
-                }
-            } else {
-                endDate2.config.min.year = "";
-                endDate2.config.min.month = "";
-                endDate2.config.min.date = "";
-            }
-        },
-    });
-
-    var endDate2 = laydate.render({
-        elem: ".endTime2", // 修改为对应的选择器
-        trigger: "click",
-        theme: "#F59221",
-        min: past3year,
-        done: function (value, date) {
-            if (value !== "") {
-                if (Date.parse(value) < Date.parse($(".startTime2").val())) {
-                    $(".startTime2").val("");
-                }
-            } else {
-                startDate2.config.min.year = "";
-                startDate2.config.min.month = "";
-                startDate2.config.min.date = "";
-            }
-        },
-    });
-
-    // #chart-box3 的时间选择器
-    var startDate3 = laydate.render({
-        elem: ".startTime3", // 修改为对应的选择器
-        trigger: "click",
-        theme: "#F59221",
-        min: past3year,
-        done: function (value, date) {
-            if (value !== "") {
-                endDate3.config.min.year = date.year;
-                endDate3.config.min.month = date.month - 1;
-                endDate3.config.min.date = date.date;
-                if (Date.parse(value) > Date.parse($(".endTime3").val())) {
-                    $(".endTime3").val("");
-                }
-            } else {
-                endDate3.config.min.year = "";
-                endDate3.config.min.month = "";
-                endDate3.config.min.date = "";
-            }
-        },
-    });
-
-    var endDate3 = laydate.render({
-        elem: ".endTime3", // 修改为对应的选择器
-        trigger: "click",
-        theme: "#F59221",
-        min: past3year,
-        done: function (value, date) {
-            if (value !== "") {
-                if (Date.parse(value) < Date.parse($(".startTime3").val())) {
-                    $(".startTime3").val("");
-                }
-            } else {
-                startDate3.config.min.year = "";
-                startDate3.config.min.month = "";
-                startDate3.config.min.date = "";
-            }
-        },
-    });
-
-
-
-
-
-});
+}
 // 生成时间
 function getPassYearFormatDate(day) {
     var date = new Date();
@@ -325,240 +251,61 @@ var selectedList3 = {
     "玉米面零售价格指数": false
 };
 
-//价格指数折线图
-function getCharts1(startTime, endTime) {
-    var endTime = endTime || getPassYearFormatDate(0);
-    var chart1 = echarts.init(document.getElementById("chart1"));
-    jQuery.ajax({
-        dataType: "jsonp",
-        timeout: "20000",
-        async: !1,
-        url: "https://openapi.mysteel.com/publishd/index/listDateDataForIndexCodes?indexCodes=" + "ID01954382" +
-            "&startTime=" +
-            startTime +
-            "&endTime=" +
-            endTime,
-        success: function (response) {
-            if (response.status == "200") {
-                var dataLength = 0;
-                if (response && response.response && Array.isArray(response.response)) {
-                    var data = response.response;
-                    var xAxis = [];
-                    var series = [];
-                    var longest = [];
-                    var XAxisList = {};
-                    // 查找更长的x轴，并获取最新的时间
-                    data.forEach(function (item) {
-                        item.dataList.forEach(function (dataItem) {
-                            if (dataItem.IndexDate && dataItem.IndexValue !== "") {
-                                XAxisList[dataItem.IndexDate] = dataItem.IndexDate;
-                            }
-
-                        });
-                        dataLength += item.dataList.length;
-                    });
-                    longest.xAxis = Object.keys(XAxisList).sort(function (i1, i2) {
-                        return Date.parse(i1) - Date.parse(i2);
-                    });
-                    xAxis = {
-                        type: "category",
-                        data: longest.xAxis,
-                        scale: true,
-                        boundaryGap: false,
-                        axisLine: {
-                            onZero: false,
-                        }, //X/Y轴O刻度是否重合
-                        splitLine: {
-                            show: false,
-                        }, //是否显示分割线
-                        axisLabel: {
-                            margin: 15, //设置文字与X轴的距离
-                        },
-                        splitNumber: 20, //分割数量
-                        min: "dataMin", //坐标轴的最小刻目
-                        max: "dataMax",
-                    };
-
-                    function pushXAxisAndSeries(name, code) {
-                        var seriesData = [];
-                        var dataMap = {};
-                        var unitMap = {};
-                        data.forEach(function (item) {
-                            item.dataList.forEach(function (dataItem) {
-                                if (dataItem.IndexDate && dataItem.IndexValue !== "") {
-                                    if (item.indexCode === code) {
-                                        if (dataItem.IndexValue !== "") {
-                                            dataMap[dataItem.IndexDate] = dataItem.IndexValue;
-                                            unitMap[dataItem.IndexDate] = item.unit;
-                                        }
-                                    }
-                                }
-                            });
-                        });
-
-                        for (var i = 0; i < longest.xAxis.length; i++) {
-                            if (dataMap[longest.xAxis[i]] !== undefined) {
-                                seriesData[i] = {
-                                    value: dataMap[longest.xAxis[i]],
-                                    unit: unitMap[longest.xAxis[i]] || null
-                                };
-                            } else {
-                                seriesData[i] = {
-                                    value: null,
-                                    unit: null
-                                };
-                            }
-                        }
-
-                        series.push({
-                            name: name,
-                            type: "line",
-                            data: seriesData,
-                            smooth: true,
-                            symbolSize: 1,
-                            connectNulls: true,
-                            lineStyle: {
-                                normal: {
-                                    opacity: 1,
-                                },
-                            }
-                        });
+// 通用的pushXAxisAndSeries方法
+function pushXAxisAndSeries(indexDataGroup, series, longest, data) {
+    indexDataGroup.forEach(function (item) {
+        var seriesData = [];
+        var dataMap = {};
+        var unitMap = {};
+        data.forEach(function (indexData) {
+            if (indexData.indexCode === item.indexCode) {
+                indexData.dataList.forEach(function (dataItem) {
+                    if (dataItem.IndexDate && dataItem.IndexValue !== "") {
+                        dataMap[dataItem.IndexDate] = dataItem.IndexValue;
+                        unitMap[dataItem.IndexDate] = indexData.unit;
                     }
-
-                    pushXAxisAndSeries("山东省米袋子价格指数", "ID01954382");
-                    option = {
-                        color: [
-                            "#BC0008",
-                            "#023985",
-                            "#84A2C9",
-                            "#BFBFBF",
-                            "#FF91A0",
-                            "#537FB3"
-                        ],
-                        tooltip: {
-                            trigger: "axis",
-                            confine: true,
-                            axisPointer: {
-                                type: "line",
-                            },
-                            formatter: function (params) {  
-                                var tooltipContent = params[0].name + '<br>';                             
-                                params.forEach(function (item) {  
-                                    if (item.value !== null) {
-                                        var unit = item.data && item.data.unit ? item.data.unit : '';  
-                                        tooltipContent +=  
-                                            '<span style="color:' + item.color + ';">●</span> ' +  
-                                            item.seriesName + "：" +                             
-                                            item.value + unit + '<br>';                         
-                                    }  
-                                });                              
-                                return tooltipContent; 
-                            }
-                        },
-                        legend: {
-                            data: [{
-                                name: "山东省米袋子价格指数",
-                                icon: "roundRect",
-                            }],
-                            itemWidth: 34,
-                            itemHeight: 7,
-                            align: "right",
-                            orient: "vertical",
-                            left: "0px",
-                            right: "10px",
-                            top: "10px",
-                            textStyle: {
-                                fontSize: 14,
-                                color: "#333",
-                                lineHeight: 30,
-                                padding: [7, 10, 5, 0],
-                            },
-                            selected: selectedList1,
-                        },
-                        grid: {
-                            left: "220px",
-                            right: "38px",
-                            bottom: "10px",
-                            top: "30px",
-                            containLabel: true,
-                        },
-                        xAxis: xAxis,
-                        yAxis: {
-                            scale: true,
-                            splitArea: {
-                                show: false,
-                            },
-                            splitLine: {
-                                show: true,
-                            }, //是否显示分割线
-                        },
-                        graphic: {
-                            type: 'text',
-                            left: '55%',
-                            top: 'center',
-                            style: {
-                                text: dataLength > 0 ? '' : '暂无数据',
-                                textAlign: 'center',
-                                fill: '#333',
-                                fontSize: 14
-                            }
-                        },
-                        series: series,
-                    };
-                    chart1.clear();
-                    chart1.setOption(option);
-                    chart1.on("legendselectchanged", function (params) {
-                        selectedList1 = params.selected;
-                    });
-                }
-            } else {
-                {
-                    chart1.setOption({
-                        graphic: {
-                            type: 'text',
-                            left: 'center',
-                            top: 'center',
-                            style: {
-                                text: response.message || '暂无数据',
-                                textAlign: 'center',
-                                fill: '#333',
-                                fontSize: 14
-                            }
-                        }
-                    }, true);
-                }
+                });
             }
-        },
-        error: function () {
-            chart1.setOption({
-                graphic: {
-                    type: 'text',
-                    left: 'center',
-                    top: 'center',
-                    style: {
-                        text: '暂无数据',
-                        textAlign: 'center',
-                        fill: '#333',
-                        fontSize: 14
-                    }
-                }
-            }, true);
-        },
+        });
+
+        // 根据 longest.xAxis 生成 seriesData
+        for (var i = 0; i < longest.xAxis.length; i++) {
+            var date = longest.xAxis[i];
+            seriesData[i] = {
+                value: dataMap[date] !== undefined ? dataMap[date] : null,
+                unit: unitMap[date] || null
+            };
+        }
+        series.push({
+            name: item.title,
+            type: "line",
+            data: seriesData,
+            smooth: true,
+            symbolSize: 1,
+            connectNulls: true,
+            lineStyle: {
+                normal: {
+                    opacity: 1,
+                },
+            },
+        });
     });
 }
-//供给价格指数折线图
-function getCharts2(startTime, endTime) {
+
+
+//价格指数折线图
+function getCharts(boxIndex, startTime, endTime) {
     var endTime = endTime || getPassYearFormatDate(0);
-    var chart2 = echarts.init(document.getElementById("chart2"));
+    var chart = echarts.init(document.getElementById("chart" + boxIndex));
+    var indexDataGroup = indexData[boxIndex - 1].data; // 根据boxIndex从indexData中获取对应的数据组
+    var selectedList = boxIndex === 1 ? selectedList1 :
+        boxIndex === 2 ? selectedList2 : selectedList3;
     jQuery.ajax({
         dataType: "jsonp",
         timeout: "20000",
         async: !1,
-        url: "https://openapi.mysteel.com/publishd/index/listDateDataForIndexCodes?indexCodes=" + "ID01954385,ID01954115,ID01954113,ID01954114,ID01954112" +
-            "&startTime=" +
-            startTime +
-            "&endTime=" +
-            endTime,
+        url: "https://openapi.mysteel.com/publishd/index/listDateDataForIndexCodes?indexCodes=" + indexDataGroup.map(item => item.indexCode).join(",") +
+            "&startTime=" + startTime + "&endTime=" + endTime,
         success: function (response) {
             if (response.status == "200") {
                 var dataLength = 0;
@@ -566,7 +313,9 @@ function getCharts2(startTime, endTime) {
                     var data = response.response;
                     var xAxis = [];
                     var series = [];
-                    var longest = [];
+                    var longest = {
+                        xAxis: []
+                    };
                     var XAxisList = {}
                     // 查找更长的x轴，并获取最新的时间
                     data.forEach(function (item) {
@@ -598,67 +347,23 @@ function getCharts2(startTime, endTime) {
                         min: "dataMin", //坐标轴的最小刻目
                         max: "dataMax",
                     };
+                    pushXAxisAndSeries(indexDataGroup, series, longest, data); // 调用通用的pushXAxisAndSeries方法
 
-                    function pushXAxisAndSeries(name, code) {
-                        var seriesData = [];
-                        var dataMap = {};
-                        var unitMap = {};
-                        data.forEach(function (item) {
-                            item.dataList.forEach(function (dataItem) {
-                                if (dataItem.IndexDate && dataItem.IndexValue !== "") {
-                                    if (item.indexCode === code) {
-                                        if (dataItem.IndexValue !== "") {
-                                            dataMap[dataItem.IndexDate] = dataItem.IndexValue;
-                                            unitMap[dataItem.IndexDate] = item.unit;
-                                        }
-                                    }
-                                }
-                            });
-                        });
-
-                        for (var i = 0; i < longest.xAxis.length; i++) {
-                            if (dataMap[longest.xAxis[i]] !== undefined) {
-                                seriesData[i] = {
-                                    value: dataMap[longest.xAxis[i]],
-                                    unit: unitMap[longest.xAxis[i]] || null
-                                };
-                            } else {
-                                seriesData[i] = {
-                                    value: null,
-                                    unit: null
-                                };
-                            }
-                        }
-
-                        series.push({
-                            name: name,
-                            type: "line",
-                            data: seriesData,
-                            smooth: true,
-                            symbolSize: 1,
-                            connectNulls: true,
-                            lineStyle: {
-                                normal: {
-                                    opacity: 1,
-                                },
-                            },
-                        });
-                    }
-
-                    pushXAxisAndSeries("米袋子供给价格指数", "ID01954385");
-                    pushXAxisAndSeries("深加工企业玉米采购价格指数", "ID01954115");
-                    pushXAxisAndSeries("玉米淀粉出库价格指数", "ID01954113");
-                    pushXAxisAndSeries("面粉企业小麦采购价格指数", "ID01954114");
-                    pushXAxisAndSeries("面粉企业面粉出厂价格指数", "ID01954112");
-
-                    option = {
+                    // 配置图表
+                    var option = {
                         color: [
                             "#BC0008",
                             "#023985",
                             "#84A2C9",
                             "#BFBFBF",
                             "#FF91A0",
-                            "#537FB3"
+                            "#537FB3",
+                            '#57b8b9',
+                            '#4b377f',
+                            '#a6a955',
+                            '#d69733',
+                            '#e8ea58'
+
                         ],
                         tooltip: {
                             trigger: "axis",
@@ -666,40 +371,27 @@ function getCharts2(startTime, endTime) {
                             axisPointer: {
                                 type: "line",
                             },
-                            formatter: function (params) {  
-                                var tooltipContent = params[0].name + '<br>';                             
-                                params.forEach(function (item) {  
+                            formatter: function (params) {
+                                var tooltipContent = params[0].name + '<br>';
+                                params.forEach(function (item) {
                                     if (item.value !== null) {
-                                        var unit = item.data && item.data.unit ? item.data.unit : '';  
-                                        tooltipContent +=  
-                                            '<span style="color:' + item.color + ';">●</span> ' +  
-                                            item.seriesName + "：" +                             
-                                            item.value + unit + '<br>';                         
-                                    }  
-                                });                              
-                                return tooltipContent; 
+                                        var unit = item.data && item.data.unit ? item.data.unit : '';
+                                        tooltipContent +=
+                                            '<span style="color:' + item.color + ';">●</span> ' +
+                                            item.seriesName + "：" +
+                                            item.value + unit + '<br>';
+                                    }
+                                });
+                                return tooltipContent;
                             }
                         },
                         legend: {
-                            data: [{
-                                    name: "米袋子供给价格指数",
-                                    icon: "roundRect",
-                                },
-                                {
-                                    name: "深加工企业玉米采购价格指数",
-                                    icon: "roundRect",
-                                },
-                                {
-                                    name: "玉米淀粉出库价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "面粉企业小麦采购价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "面粉企业面粉出厂价格指数",
-                                    icon: "roundRect",
-                                }
-                            ],
+                            data: indexDataGroup.map(function (item) {
+                                return {
+                                    name: item.title,
+                                    icon: "roundRect"
+                                };
+                            }),
                             itemWidth: 34,
                             itemHeight: 7,
                             align: "right",
@@ -713,7 +405,7 @@ function getCharts2(startTime, endTime) {
                                 lineHeight: 30,
                                 padding: [7, 10, 5, 0],
                             },
-                            selected: selectedList2,
+                            selected: selectedList,
                         },
                         grid: {
                             left: "260px",
@@ -746,284 +438,14 @@ function getCharts2(startTime, endTime) {
                         },
                         series: series,
                     };
-                    chart2.clear();
-                    chart2.setOption(option);
-
-                    chart2.on("legendselectchanged", function (params) {
-                        selectedList2 = params.selected;
+                    chart.clear();
+                    chart.setOption(option);
+                    chart.on("legendselectchanged", function (params) {
+                        selectedList = params.selected;
                     });
                 }
             } else {
-                chart2.setOption({
-                    graphic: {
-                        type: 'text',
-                        left: 'center',
-                        top: 'center',
-                        style: {
-                            text: response.message || '暂无数据',
-                            textAlign: 'center',
-                            fill: '#333',
-                            fontSize: 14
-                        }
-                    }
-                }, true);
-            }
-        },
-        error: function () {
-            chart2.setOption({
-                graphic: {
-                    type: 'text',
-                    left: 'center',
-                    top: 'center',
-                    style: {
-                        text: '暂无数据',
-                        textAlign: 'center',
-                        fill: '#333',
-                        fontSize: 14
-                    }
-                }
-            }, true);
-        },
-    });
-}
-//消费价格指数折线图
-function getCharts3(startTime, endTime) {
-    var endTime = endTime || getPassYearFormatDate(0);
-    var chart3 = echarts.init(document.getElementById("chart3"));
-    jQuery.ajax({
-        dataType: "jsonp",
-        timeout: "20000",
-        async: !1,
-        url: "https://openapi.mysteel.com/publishd/index/listDateDataForIndexCodes?indexCodes=" + "ID01954379,ID01954124,ID01954118,ID01954131,ID01954121,ID01954132,ID01954119,ID01954135,ID01954130,ID01954120,ID01954133" +
-            "&startTime=" +
-            startTime +
-            "&endTime=" +
-            endTime,
-        success: function (response) {
-            if (response.status == "200") {
-                var dataLength = 0;
-                if (response && response.response && Array.isArray(response.response)) {
-                    var data = response.response;
-                    var xAxis = [];
-                    var series = [];
-                    var longest = [];
-                    var XAxisList = {}
-                    // 查找更长的x轴，并获取最新的时间
-                    data.forEach(function (item) {
-                        item.dataList.forEach(function (dataItem) {
-                            if (dataItem.IndexDate && dataItem.IndexValue !== "") {
-                                XAxisList[dataItem.IndexDate] = dataItem.IndexDate;
-                            }
-                        });
-                        dataLength += item.dataList.length
-                    });
-                    longest.xAxis = Object.keys(XAxisList).sort(function (i1, i2) {
-                        return Date.parse(i1) - Date.parse(i2);
-                    });
-                    xAxis = {
-                        type: "category",
-                        data: longest.xAxis,
-                        scale: true,
-                        boundaryGap: false,
-                        axisLine: {
-                            onZero: false,
-                        }, //X/Y轴O刻度是否重合
-                        splitLine: {
-                            show: false,
-                        }, //是否显示分割线
-                        axisLabel: {
-                            margin: 15, //设置文字与X轴的距离
-                        },
-                        splitNumber: 20, //分割数量
-                        min: "dataMin", //坐标轴的最小刻目
-                        max: "dataMax",
-                    };
-
-
-                    function pushXAxisAndSeries(name, code) {
-                        var seriesData = [];
-                        var dataMap = {};
-                        var unitMap = {};
-                        data.forEach(function (item) {
-                            item.dataList.forEach(function (dataItem) {
-                                if (dataItem.IndexDate && dataItem.IndexValue !== "") {
-                                    if (item.indexCode === code) {
-                                        if (dataItem.IndexValue !== "") {
-                                            dataMap[dataItem.IndexDate] = dataItem.IndexValue;
-                                            unitMap[dataItem.IndexDate] = item.unit;
-                                        }
-                                    }
-                                }
-                            });
-                        });
-
-                        for (var i = 0; i < longest.xAxis.length; i++) {
-                            if (dataMap[longest.xAxis[i]] !== undefined) {
-                                seriesData[i] = {
-                                    value: dataMap[longest.xAxis[i]],
-                                    unit: unitMap[longest.xAxis[i]] || null
-                                };
-                            } else {
-                                seriesData[i] = {
-                                    value: null,
-                                    unit: null
-                                };
-                            }
-                        }
-
-                        series.push({
-                            name: name,
-                            type: "line",
-                            data: seriesData,
-                            smooth: true,
-                            symbolSize: 1,
-                            connectNulls: true,
-                            lineStyle: {
-                                normal: {
-                                    opacity: 1,
-                                },
-                            },
-                        });
-                    }
-                    pushXAxisAndSeries("米袋子消费价格指数", "ID01954379");
-                    pushXAxisAndSeries("面粉批发价格指数", "ID01954124");
-                    pushXAxisAndSeries("面粉零售价值指数", "ID01954118");
-                    pushXAxisAndSeries("大米批发价格指数", "ID01954131");
-                    pushXAxisAndSeries("大米零售价格指数", "ID01954121");
-                    pushXAxisAndSeries("小米批发价格指数", "ID01954132");
-                    pushXAxisAndSeries("小米零售价格指数", "ID01954119");
-                    pushXAxisAndSeries("绿豆批发价格指数", "ID01954135");
-                    pushXAxisAndSeries("绿豆零售价格指数", "ID01954130");
-                    pushXAxisAndSeries("玉米面批发价格指数", "ID01954120");
-                    pushXAxisAndSeries("玉米面零售价格指数", "ID01954133");
-
-                    option = {
-                        color: [
-                            "#BC0008",
-                            "#023985",
-                            "#84A2C9",
-                            "#BFBFBF",
-                            "#FF91A0",
-                            "#537FB3",
-                            '#57b8b9',
-                            '#4b377f',
-                            '#a6a955',
-                            '#d69733',
-                            '#e8ea58'
-
-                        ],
-                        tooltip: {
-                            trigger: "axis",
-                            confine: true,
-                            axisPointer: {
-                                type: "line",
-                            },
-                            formatter: function (params) {  
-                                var tooltipContent = params[0].name + '<br>';                             
-                                params.forEach(function (item) {  
-                                    if (item.value !== null) {
-                                        var unit = item.data && item.data.unit ? item.data.unit : '';  
-                                        tooltipContent +=  
-                                            '<span style="color:' + item.color + ';">●</span> ' +  
-                                            item.seriesName + "：" +                             
-                                            item.value + unit + '<br>';                         
-                                    }  
-                                });                              
-                                return tooltipContent; 
-                            }
-                        },
-                        legend: {
-                            data: [{
-                                    name: "米袋子消费价格指数",
-                                    icon: "roundRect",
-                                },
-                                {
-                                    name: "面粉批发价格指数",
-                                    icon: "roundRect",
-                                },
-                                {
-                                    name: "面粉零售价值指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "大米批发价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "大米零售价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "小米批发价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "小米零售价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "绿豆批发价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "绿豆零售价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "玉米面批发价格指数",
-                                    icon: "roundRect",
-                                }, {
-                                    name: "玉米面零售价格指数",
-                                    icon: "roundRect",
-                                }
-                            ],
-                            itemWidth: 34,
-                            itemHeight: 7,
-                            align: "right",
-                            orient: "vertical",
-                            left: "0px",
-                            right: "10px",
-                            top: "10px",
-                            textStyle: {
-                                fontSize: 14,
-                                color: "#333",
-                                lineHeight: 30,
-                                padding: [7, 10, 5, 0],
-                            },
-                            selected: selectedList3,
-                        },
-                        grid: {
-                            left: "220px",
-                            right: "38px",
-                            bottom: "10px",
-                            top: "30px",
-                            containLabel: true,
-                        },
-                        xAxis: xAxis,
-                        yAxis: {
-                            scale: true,
-                            splitArea: {
-                                show: false,
-                            },
-                            splitLine: {
-                                show: true,
-                            }, //是否显示分割线
-                        },
-
-                        graphic: {
-                            type: 'text',
-                            left: '56%',
-                            top: 'center',
-                            style: {
-                                text: dataLength > 0 ? '' : '暂无数据',
-                                textAlign: 'center',
-                                fill: '#333',
-                                fontSize: 14
-                            }
-                        },
-                        series: series,
-                    };
-                    chart3.clear();
-                    chart3.setOption(option);
-                    chart3.on("legendselectchanged", function (params) {
-                        selectedList3 = params.selected;
-                    });
-                }
-            } else {
-                chart3.setOption({
+                chart.setOption({
                     graphic: {
                         type: 'text',
                         left: 'center',
@@ -1040,7 +462,7 @@ function getCharts3(startTime, endTime) {
             }
         },
         error: function () {
-            chart3.setOption({
+            chart.setOption({
                 graphic: {
                     type: 'text',
                     left: 'center',
@@ -1057,98 +479,54 @@ function getCharts3(startTime, endTime) {
     });
 }
 
-//价格指数点击
-$("#chart-box1 .j-btn").on("click", function () {
-    $(this).siblings().removeClass("cur");
-    $(this).addClass("cur");
-    var start1 = getPassYearFormatDate(+$(this).attr("data-val"));
-    $("#chart-box1 .j-start").val(start1);
-    $("#chart-box1 .j-end").val(getPassYearFormatDate(0));
-    getCharts1(start1, "");
-});
+// 价格指数的点击事件
+function handleChartBoxClick(boxIndex) {
+    $("#chart-box" + boxIndex + " .j-btn").on("click", function () {
+        $(this).siblings().removeClass("cur");
+        $(this).addClass("cur");
+        var start = getPassYearFormatDate(+$(this).attr("data-val"));
+        $("#chart-box" + boxIndex + " .j-start").val(start);
+        $("#chart-box" + boxIndex + " .j-end").val(getPassYearFormatDate(0));
+        getCharts(boxIndex, start, "");
+    });
 
-// 价格指数查询时间段的折线图
-$("#chart-box1 .j-submit").on("click", function () {
-    var start1 = $("#chart-box1 .j-start").val();
-    var end1 = $("#chart-box1 .j-end").val();
-    var gap1 = (new Date(end1) - new Date(start1)) / 86400000;
-    $("#chart-box1 .j-btn").removeClass("cur");
+    // 价格指数查询时间段的折线图
+    $("#chart-box" + boxIndex + " .j-submit").on("click", function () {
+        var start = $("#chart-box" + boxIndex + " .j-start").val();
+        var end = $("#chart-box" + boxIndex + " .j-end").val();
+        var gap = (new Date(end) - new Date(start)) / 86400000;
+        $("#chart-box" + boxIndex + " .j-btn").removeClass("cur");
 
-    if (gap1 == 30 && end1 == getPassYearFormatDate(0)) {
-        $("#chart-box1 .j-btn").eq(0).addClass("cur");
-    } else if (gap1 == 90 && end1 == getPassYearFormatDate(0)) {
-        $("#chart-box1 .j-btn").eq(1).addClass("cur");
-    } else if (gap1 == 365 && end1 == getPassYearFormatDate(0)) {
-        $("#chart-box1 .j-btn").eq(2).addClass("cur");
+        if (gap == 30 && end == getPassYearFormatDate(0)) {
+            $("#chart-box" + boxIndex + " .j-btn").eq(0).addClass("cur");
+        } else if (gap == 90 && end == getPassYearFormatDate(0)) {
+            $("#chart-box" + boxIndex + " .j-btn").eq(1).addClass("cur");
+        } else if (gap == 365 && end == getPassYearFormatDate(0)) {
+            $("#chart-box" + boxIndex + " .j-btn").eq(2).addClass("cur");
+        }
+        if (!start) {
+            start = getPassYearFormatDate(365 * 3);
+        }
+        getCharts(boxIndex, start, end);
+    });
+
+    // 默认点击第二个按钮
+    $("#chart-box" + boxIndex + " .j-btn").eq(1).click();
+}
+
+
+// 价格指数的点击事件
+function handleChartBoxClicks() {
+    for (var i = 0; i < indexData.length; i++) {
+        handleChartBoxClick(i + 1); // 根据indexData的长度调用handleChartBoxClick
     }
-    if (!start1) {
-        start1 = getPassYearFormatDate(365 * 3);
-    }
-    getCharts1(start1, end1);
+}
+
+// 在页面加载完成后，初始化日期选择器和点击事件
+$(document).ready(function () {
+    initDateSelectors();
+    handleChartBoxClicks();
 });
-$("#chart-box1 .j-btn").eq(1).click();
-
-//供给价格指数点击
-$("#chart-box2 .j-btn").on("click", function () {
-    $(this).siblings().removeClass("cur");
-    $(this).addClass("cur");
-    var start2 = getPassYearFormatDate(+$(this).attr("data-val"));
-    $("#chart-box2 .j-start").val(start2);
-    $("#chart-box2 .j-end").val(getPassYearFormatDate(0));
-    getCharts2(start2, ""); // 单个指数
-});
-
-// 供给价格指数查询时间段的折线图
-$("#chart-box2 .j-submit").on("click", function () {
-    var start2 = $("#chart-box2 .j-start").val();
-    var end2 = $("#chart-box2 .j-end").val();
-    var gap2 = (new Date(end2) - new Date(start2)) / 86400000;
-    $("#chart-box2 .j-btn").removeClass("cur");
-
-    if (gap2 == 30 && end2 == getPassYearFormatDate(0)) {
-        $("#chart-box2 .j-btn").eq(0).addClass("cur");
-    } else if (gap2 == 90 && end2 == getPassYearFormatDate(0)) {
-        $("#chart-box2 .j-btn").eq(1).addClass("cur");
-    } else if (gap2 == 365 && end2 == getPassYearFormatDate(0)) {
-        $("#chart-box2 .j-btn").eq(2).addClass("cur");
-    }
-    if (!start2) {
-        start2 = getPassYearFormatDate(365 * 3);
-    }
-    getCharts2(start2, end2);
-});
-$("#chart-box2 .j-btn").eq(1).click();
-
-
-//消费价格指数点击
-$("#chart-box3 .j-btn").on("click", function () {
-    $(this).siblings().removeClass("cur");
-    $(this).addClass("cur");
-    var start3 = getPassYearFormatDate(+$(this).attr("data-val"));
-    $("#chart-box3 .j-start").val(start3);
-    $("#chart-box3 .j-end").val(getPassYearFormatDate(0));
-    getCharts3(start3, ""); // 单个指数
-});
-
-// 消费价格指数查询时间段的折线图
-$("#chart-box3 .j-submit").on("click", function () {
-    var start3 = $("#chart-box3 .j-start").val();
-    var end3 = $("#chart-box3 .j-end").val();
-    var gap3 = (new Date(end3) - new Date(start3)) / 86400000;
-    $("#chart-box3 .j-btn").removeClass("cur");
-    if (gap3 == 30 && end3 == getPassYearFormatDate(0)) {
-        $("#chart-box3 .j-btn").eq(0).addClass("cur");
-    } else if (gap3 == 90 && end3 == getPassYearFormatDate(0)) {
-        $("#chart-box3 .j-btn").eq(1).addClass("cur");
-    } else if (gap3 == 365 && end3 == getPassYearFormatDate(0)) {
-        $("#chart-box3 .j-btn").eq(2).addClass("cur");
-    }
-    if (!start3) {
-        start3 = getPassYearFormatDate(365 * 3);
-    }
-    getCharts3(start3, end3);
-});
-$("#chart-box3 .j-btn").eq(1).click();
 
 
 
